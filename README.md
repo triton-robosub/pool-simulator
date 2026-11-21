@@ -2,55 +2,51 @@
 
 # Pool Simulator
 
-It is designed for underwater robots (ROV, AUV etc.). The model was created with olympic pool dimensions.
-
-[Click](https://github.com/cagdasaktay/pool-simulator-uuv_sim) to use the more detailed simulator based on UUV Simulator and ROS Melodic.
-
+It is designed for underwater robots (ROV, AUV etc.). The model was created with olympic pool dimensions and includes a water volume with buoyancy.
 
 
 ## Requirements for use
 
-- [ROS Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu)
-    
-    `Ubuntu 20.04`
+- Ubuntu 24.04
+- ROS 2 Jazzy
+- Gazebo Harmonic (`gz-harmonic`)
+- `ros-jazzy-ros-gz`
+
+Install the Gazebo packages with:
+
+```bash
+sudo apt install ros-jazzy-ros-gz
+```
 
 ## Installation
 
-```bash 
-cd ~/catkin_ws/src
+```bash
+cd ~/ros2_ws/src
+git clone <your-repo-url> pool_simulator
+cd ~/ros2_ws
+colcon build --packages-select pool_simulator
+source install/setup.bash
 ```
-
-```bash 
-git clone https://github.com/cagdasaktay/pool-simulator.git
-```
-```bash 
-cd ~/catkin_ws
-```
-```bash 
-catkin_make
-```
-```bash 
-source devel/setup.bash
-```
-
 
 ## Launch Simulation in Gazebo
-
 You can run the simulation with the following command.
 
 ```bash 
-  roslaunch pool_simulator gazebo.launch
+  ros2 launch pool_simulator gazebo.launch.xml
 ```
-    
 
-## Screenshot
-
-![Ekran görüntüsü 2021-09-10 145356](https://user-images.githubusercontent.com/71928699/132852496-ca685674-91b4-4e05-bd31-76b5c657f639.jpg)
-
-
+The simulation starts paused; press play in the Gazebo GUI to run it. The
+launch file bridges `/clock` to ROS 2, so run your nodes with
+`use_sim_time:=true`.
   
 ## Contact
-- Çağdaş Aktay - cgdsaktay@gmail.com
+- Tom Klappenecker - tom.klappenecker@gmail.com
 
 
+## Credits and License
+This package is adapted from
+[cagdasaktay/pool-simulator](https://github.com/cagdasaktay/pool-simulator)
+(MIT License, Copyright (c) 2021 cagdasaktay) and was ported from ROS Noetic
+and Gazebo Classic to ROS 2 Jazzy and Gazebo Harmonic. It is released under
+the MIT License; see [LICENSE](LICENSE).
   
